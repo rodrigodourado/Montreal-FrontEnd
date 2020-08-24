@@ -1,0 +1,21 @@
+<app-panel PanelTitle="Atrasos" PanelSubtitle="Listagem de Empréstimos em atraso" *ngIf="emprestimos">
+  <table class="table table-striped table-bordered " *ngIf="emprestimos">
+    <tr class="thead-light">
+      <th>Usuário</th>
+      <th>Livro</th>
+      <th>Data do empréstimo</th>
+      <th>Dias em atraso</th>
+    </tr>
+    <tr *ngIf="emprestimos.length == 0">
+      <td colspan="4">Nenhum Emprestimo em atraso</td>
+    </tr>
+
+    <tr *ngFor="let emprestimo of emprestimos">
+      <td>
+        {{ emprestimo.usuario.nome }}</td>
+      <td>{{ emprestimo.livro.titulo  }}</td>
+      <td>{{ emprestimo.dataInicio | date : "dd/MM/yyyy" }}</td>
+      <td>{{ calculateDiff(emprestimo.dataInicio)  }}</td>
+    </tr>
+  </table>
+</app-panel>

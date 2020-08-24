@@ -1,0 +1,37 @@
+<i class="fa fa-spinner fa-spin fa-2x" *ngIf="!livros"></i>
+<app-panel-header PanelTitle="Livros" PanelSubtitle="Listagem de livros" *ngIf="livros">
+
+  <div class="addButton">
+    <a [routerLink]="['/LivroForm']" class="btn btn-success">
+      <i class="fa fa-plus"></i>
+      Novo Livro
+    </a>
+  </div>
+</app-panel-header>
+
+<div class="row">
+  <div class="column" *ngFor="let livro of livros">
+    <div class="card">
+      <div>
+        Título: <span class="bold">{{ livro.titulo }}</span>
+        <br>
+        Genero: <span class="bold">{{ livro.genero }}</span>
+        <br>
+        Autor: <span class="bold">{{ livro.autor }}</span>
+        <br>
+        Sinopse: <span class="bold">{{ livro.sinopse }}</span>
+      </div>
+      <hr />
+      <div>
+        <a type="button" class="btn btn-primary" [routerLink]="['/LivroForm', livro.id]">
+          <i class="fa fa-edit"></i>
+          Alterar
+        </a>
+        <button type="button" (click)="confirmInactive(livro.id)" class="btn btn-danger">
+          <i class="fa fa-times"></i>
+          Inativar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

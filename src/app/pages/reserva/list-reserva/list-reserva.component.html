@@ -1,0 +1,29 @@
+<app-panel PanelTitle="Reserva" PanelSubtitle="Listagem de Reserva" *ngIf="reservas">
+  <table class="table table-striped table-bordered " *ngIf="reservas">
+    <tr class="thead-light">
+      <th>Usuário</th>
+      <th>Livro</th>
+      <th>Data da reserva</th>
+      <th style="text-align: center;"> <a [routerLink]="['/ReservaForm']" class="btn btn-success">
+          <i class="fa fa-plus"></i>
+          Nova Reserva
+        </a></th>
+    </tr>
+    <tr *ngIf="reservas.length == 0">
+      <td colspan="4">Nenhuma reserva encontrada</td>
+    </tr>
+
+    <tr *ngFor="let reserva of reservas">
+      <td>
+        {{ reserva.usuario.nome }}</td>
+      <td>{{ reserva.livro.titulo  }}</td>
+      <td>{{ reserva.dataInicio | date : "dd/MM/yyyy" }}</td>
+      <td style="text-align: center;">
+        <button type="button" (click)="confirmCancelamento(reserva.id)" class="btn btn-danger">
+          <i class="fa fa-times"></i>
+          cancelar reserva
+        </button>
+      </td>
+    </tr>
+  </table>
+</app-panel>

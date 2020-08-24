@@ -1,0 +1,35 @@
+<app-panel PanelTitle="Empréstimo" PanelSubtitle="Cadastrar Empréstimo">
+  <div *ngIf="cadastro">
+    <form autocomplete="off" [formGroup]="cadastro" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6">
+          <label>Usuario *</label>
+          <select formControlName="idUsuario" class="form-control" id="idUsuario">
+            <option *ngFor="let usuario of usuarios" [value]="usuario.id">
+              {{ usuario.nome }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label>Livro *</label>
+          <select formControlName="idLivro" class="form-control" id="idLivro">
+            <option *ngFor="let livro of livros" [value]="livro.id">
+              {{ livro.titulo }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-12 align-right">
+          <a [routerLink]="['/EmprestimoList']" type="button" class="btn btn-outline-secondary">
+            <i class="fa fa-backspace"></i>
+            Voltar
+          </a>
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-save"></i>
+            Salvar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</app-panel>

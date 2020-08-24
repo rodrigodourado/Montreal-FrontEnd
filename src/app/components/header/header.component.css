@@ -1,0 +1,52 @@
+.headerwrapper {
+  background-color: #1f6b9e;
+  min-height: 60px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.header-left {
+  float: left;
+}
+
+.header-right {
+  float: right;
+}
+
+
+ul#menu a {
+  display: block;
+  padding: 18px 20px;
+  color: #ffffff;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  color: #fff;
+  font-size: 3em;
+  text-shadow: 3px 5px #000;
+  font-weight: 700;
+  margin-left: 25px;
+}
+
+ul#menu a i {
+  display: inline-block;
+  min-width: 20px;
+  color: #ffffff;
+}
+
+
+ul#menu a.active {
+  background: #218838;
+  color: #fff;
+}
+
+ul#menu a:hover {
+  color: #1f6b9e;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+ul#menu a:hover i {
+  color: #1f6b9e;
+}

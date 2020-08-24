@@ -1,0 +1,49 @@
+<app-panel PanelTitle="Usuário" PanelSubtitle="Cadastrar Usuário">
+  <div *ngIf="cadastro">
+    <form autocomplete="off" [formGroup]="cadastro" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-md-6">
+          <label>Nome *</label>
+          <input type="text" formControlName="nome" id="nome" class="form-control" placeholder="Nome" />
+        </div>
+        <div class="col-md-3">
+          <label>CPF *</label>
+          <input type="text" formControlName="cpf" id="cpf" class="form-control" mask="000.000.000-00"
+            placeholder="000.000.000-00" />
+        </div>
+        <div class="col-md-3">
+          <label>Telefone </label>
+          <input type="text" formControlName="telefone" id="telefone" class="form-control" placeholder="(00) 00000-0000"
+            mask="(00) 00000-0000" />
+        </div>
+        <div class="col-md-6">
+          <label>Email </label>
+          <input type="text" formControlName="email" id="email" class="form-control" placeholder="Email" />
+        </div>
+        <div class="col-md-6">
+          <label>Instituição de ensino </label>
+          <select formControlName="idInstituicaoEnsino" class="form-control" id="idInstituicaoEnsino">
+            <option *ngFor="let instituicaoEnsino of instituicaoEnsinos" [value]="instituicaoEnsino.id">
+              {{ instituicaoEnsino.nome }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-12">
+          <label>Endereço</label>
+          <textarea formControlName="endereco" id="endereco" class="form-control"></textarea>
+        </div>
+        <div class="col-md-12 align-right">
+          <a [routerLink]="['/UsuarioList']" type="button" class="btn btn-outline-secondary">
+            <i class="fa fa-backspace"></i>
+            Voltar
+          </a>
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-save"></i>
+            Salvar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</app-panel>

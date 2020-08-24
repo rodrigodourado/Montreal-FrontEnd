@@ -1,0 +1,54 @@
+<app-panel PanelTitle="Empréstimo" PanelSubtitle="Listagem de Empréstimo" *ngIf="emprestimos">
+  <form autocomplete="off" [formGroup]="filtro" (ngSubmit)="submit()">
+    <div class="align-center row">
+      <div class="col-md-10">
+        <label>Empréstimos *</label>
+        <select formControlName="emprestimoFiltro" class="form-control" id="emprestimoFiltro">
+          <option [selected]=true value=" ">Todos</option>
+          <option value="false">Em aberto</option>
+          <option value="true">Concluídos</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <br>
+        <br>
+        <button type="submit" class="btn btn-success">
+          <i class="fa fa-filter"></i>
+          Filtrar
+        </button>
+      </div>
+    </div>
+    <hr />
+    <br />
+    <table class="table table-striped table-bordered " *ngIf="emprestimos">
+      <tr class="thead-light">
+        <th>Usuário</th>
+        <th>Livro</th>
+        <th>Data do empréstimo</th>
+        <th>Devolvido em</th>
+        <th style="text-align: center;"> <a [routerLink]="['/EmprestimoForm']" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Novo Empréstimo
+          </a></th>
+      </tr>
+      <tr *ngIf="emprestimos.length == 0">
+        <td colspan="5">Nenhum Emprestimo encontrado</td>
+      </tr>
+
+      <tr *ngFor="let emprestimo of emprestimos"
+        [ngStyle]="{'color': (emprestimo.dataFim == null && calculateDiff(emprestimo.dataInicio) > 30  ) ? 'red' : '' }">
+        <td>
+          {{ emprestimo.usuario.nome }}</td>
+        <td>{{ emprestimo.livro.titulo  }}</td>
+        <td>{{ emprestimo.dataInicio | date : "dd/MM/yyyy" }}</td>
+        <td>{{ emprestimo.dataFim | date : "dd/MM/yyyy" }}</td>
+        <td style="text-align: center;"> <button type="button" (click)="confirmDevolucao(emprestimo.id)"
+            class="btn btn-primary">
+            <i class="fa fa-edit"></i>
+            Devolver livro
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</app-panel>

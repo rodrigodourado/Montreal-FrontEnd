@@ -1,0 +1,38 @@
+<i class="fa fa-spinner fa-spin fa-2x" *ngIf="!instituicaoEnsinos"></i>
+<app-panel-header PanelTitle="Instituição de Ensino" PanelSubtitle="Listagem de Instituição de Ensino"
+  *ngIf="instituicaoEnsinos">
+
+  <div class="addButton">
+    <a [routerLink]="['/InstituicaoEnsinoForm']" class="btn btn-success">
+      <i class="fa fa-plus"></i>
+      Nova Instituição de Ensino
+    </a>
+  </div>
+</app-panel-header>
+
+<div class="row">
+  <div class="column" *ngFor="let instituicaoEnsino of instituicaoEnsinos">
+    <div class="card">
+      <div>
+        Nome: <span class="bold">{{ instituicaoEnsino.nome }}</span>
+        <br>
+        CNPJ: <span class="bold">{{ instituicaoEnsino.cnpj | mask:"00.000.000/0000-00" }}</span>
+        <br>
+        Telefone: <span class="bold">{{ instituicaoEnsino.telefone  | mask:"(00) 00000-0000" }}</span>
+        <br>
+        Endereço: <span class="bold">{{ instituicaoEnsino.endereco }}</span>
+      </div>
+      <hr />
+      <div>
+        <a type="button" class="btn btn-primary" [routerLink]="['/InstituicaoEnsinoForm', instituicaoEnsino.id]">
+          <i class="fa fa-edit"></i>
+          Alterar
+        </a>
+        <button type="button" (click)="confirmInactive(instituicaoEnsino.id)" class="btn btn-danger">
+          <i class="fa fa-times"></i>
+          Inativar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

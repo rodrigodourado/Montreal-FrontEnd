@@ -1,0 +1,41 @@
+<i class="fa fa-spinner fa-spin fa-2x" *ngIf="!usuarios"></i>
+<app-panel-header PanelTitle="Usuário" PanelSubtitle="Listagem de Usuário" *ngIf="usuarios">
+
+  <div class="addButton">
+    <a [routerLink]="['/UsuarioForm']" class="btn btn-success">
+      <i class="fa fa-plus"></i>
+      Novo Usuário
+    </a>
+  </div>
+</app-panel-header>
+
+<div class="row">
+  <div class="column" *ngFor="let usuario of usuarios">
+    <div class="card">
+      <div>
+        Nome: <span class="bold">{{ usuario.nome }}</span>
+        <br>
+        CPF: <span class="bold">{{ usuario.cpf | mask:"000.000.000-00" }}</span>
+        <br>
+        Telefone: <span class="bold">{{ usuario.telefone  | mask:"(00) 00000-0000" }}</span>
+        <br>
+        Email: <span class="bold">{{ usuario.email  }}</span>
+        <br>
+        Instituição: <span class="bold">{{ usuario.instituicaoEnsino.nome  }}</span>
+        <br>
+        Endereço: <span class="bold">{{ usuario.endereco }}</span>
+      </div>
+      <hr />
+      <div>
+        <a type="button" class="btn btn-primary" [routerLink]="['/UsuarioForm', usuario.id]">
+          <i class="fa fa-edit"></i>
+          Alterar
+        </a>
+        <button type="button" (click)="confirmInactive(usuario.id)" class="btn btn-danger">
+          <i class="fa fa-times"></i>
+          Inativar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
